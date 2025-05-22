@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using MySql;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,11 @@ var connectionString = builder.Configuration.GetConnectionString("BDFuncionalCon
 builder.Services.AddDbContext<MySqlContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
+builder.Services.AddGraphQLServer().AddQueryType<Query>()
+                                   .AddProjections()
+                                   .AddFiltering()
+                                   .AddSorting();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -27,5 +33,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapGraphQL("/graphql");
 
 app.Run();

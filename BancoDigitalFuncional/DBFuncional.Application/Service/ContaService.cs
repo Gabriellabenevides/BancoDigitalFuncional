@@ -1,4 +1,5 @@
-﻿using BDFuncional.Domain.Interface;
+﻿using BDFuncional.Domain;
+using BDFuncional.Domain.Interface;
 using Domain.Entities;
 
 namespace DBFuncional.Application.Service;
@@ -16,7 +17,7 @@ public class ContaService(IContaRepository repository)
     {
         var conta = ObterConta(numeroConta).Result;
         if (conta.Saldo < valor)
-            throw new Exception("Saldo insuficiente");
+            throw new Exception(MessageException.SaldoInsuficiente);
         conta.Saldo -= valor;
         await repository.Atualizar(conta);
         return conta;

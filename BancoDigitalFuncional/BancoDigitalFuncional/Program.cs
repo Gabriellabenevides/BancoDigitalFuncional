@@ -1,10 +1,10 @@
 using BancoDigitalFuncional.GraphQL;
+using BancoDigitalFuncional.Middlewares;
 using BDFuncional.Domain.Interface;
 using BDFuncional.MySql.Repository;
 using DBFuncional.Application.Service;
 using Microsoft.EntityFrameworkCore;
 using MySql;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +30,8 @@ builder.Services.AddScoped<IContaRepository, ContaRepository>();
 builder.Services.AddScoped<ContaService>();
 
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

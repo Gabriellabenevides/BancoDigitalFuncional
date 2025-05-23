@@ -1,3 +1,7 @@
+using BancoDigitalFuncional.GraphQL;
+using BDFuncional.Domain.Interface;
+using BDFuncional.MySql.Repository;
+using DBFuncional.Application.Service;
 using Microsoft.EntityFrameworkCore;
 using MySql;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
@@ -15,10 +19,15 @@ var connectionString = builder.Configuration.GetConnectionString("BDFuncionalCon
 builder.Services.AddDbContext<MySqlContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
-builder.Services.AddGraphQLServer().AddQueryType<Query>()
-                                   .AddProjections()
-                                   .AddFiltering()
-                                   .AddSorting();
+builder.Services.AddGraphQLServer()
+    .AddQueryType<BancoDigitalFuncional.GraphQL.Query>()
+    .AddMutationType<Mutation>()
+    .AddProjections()
+    .AddFiltering()
+    .AddSorting();
+
+builder.Services.AddScoped<IContaRepository, ContaRepository>();
+builder.Services.AddScoped<ContaService>();
 
 var app = builder.Build();
 

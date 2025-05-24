@@ -1,5 +1,4 @@
 using BancoDigitalFuncional.GraphQL;
-using BancoDigitalFuncional.Middlewares;
 using BDFuncional.Domain.Interface;
 using BDFuncional.MySql.Repository;
 using DBFuncional.Application.Service;
@@ -33,8 +32,6 @@ builder.Services.AddScoped<IContaRepository, ContaRepository>();
 builder.Services.AddScoped<IContaService, ContaService>();
 
 var app = builder.Build();
-
-app.UseMiddleware<ExceptionMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

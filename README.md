@@ -22,7 +22,6 @@ Certifique-se de ter os seguintes itens instalados na sua máquina:
 
 ```bash
 git clone https://github.com/Gabriellabenevides/BancoDigitalFuncional
-cd BancoDigitalFuncional
 ```
 
 2. **Configure o banco de dados**

@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BDFuncional.MySql", "MySql\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBFuncional.Application", "DBFuncional.Application\DBFuncional.Application.csproj", "{EF2728AD-B01B-4AE2-8127-1E549D6A5B1E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BDFuncional.Tests", "BDFuncional.Tests\BDFuncional.Tests.csproj", "{A63BD0B0-FC1A-407B-93BD-3F2E772035A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{EF2728AD-B01B-4AE2-8127-1E549D6A5B1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF2728AD-B01B-4AE2-8127-1E549D6A5B1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF2728AD-B01B-4AE2-8127-1E549D6A5B1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A63BD0B0-FC1A-407B-93BD-3F2E772035A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A63BD0B0-FC1A-407B-93BD-3F2E772035A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A63BD0B0-FC1A-407B-93BD-3F2E772035A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A63BD0B0-FC1A-407B-93BD-3F2E772035A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

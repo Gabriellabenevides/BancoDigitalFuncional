@@ -1,5 +1,4 @@
 ﻿using BDFuncional.Domain;
-using Microsoft.VisualBasic;
 
 public class CustomErrorFilter : IErrorFilter
 {

@@ -15,9 +15,4 @@ public class GeradorDados
     {
         return _fixture.Create<T>();
     }
-
-    public List<T> CriarLista<T>(int quantidade = 5) where T : class
-    {
-        return _fixture.CreateMany<T>(quantidade).ToList();
-    }
 }

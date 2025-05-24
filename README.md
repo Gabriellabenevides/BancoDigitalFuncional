@@ -1,71 +1,114 @@
-# BancoDigitalFuncional
+# 💰 BancoDigitalFuncional
 
-🚀 Como rodar o projeto
-✅ Pré-requisitos
+Sistema bancário funcional com suporte a GraphQL para operações como **depósito**, **saque** e **consulta de saldo**.
+
+---
+
+## 🚀 Como rodar o projeto
+
+### ✅ Pré-requisitos
+
 Certifique-se de ter os seguintes itens instalados na sua máquina:
 
-.NET SDK 9.0
-Visual Studio
-MySql
+- [.NET SDK 9.0](https://dotnet.microsoft.com/download)
+- [Visual Studio 2022+](https://visualstudio.microsoft.com/)
+- [MySQL Server](https://dev.mysql.com/downloads/)
 
-🔧 Configuração inicial
-1. Clone o repositório:
+---
 
+### 🔧 Configuração inicial
+
+1. **Clone o repositório**
+
+```bash
 git clone https://github.com/Gabriellabenevides/BancoDigitalFuncional
+cd BancoDigitalFuncional
+```
 
-2. (Opcional) Configure o banco de dados
-Verifique a connection string no arquivo appsettings.json do projeto principal e ajuste se necessário:
+2. **Configure o banco de dados**
 
+Abra o arquivo `appsettings.json` do projeto principal e verifique a `connection string`:
 
-    "ConnectionStrings": {
-        "BDFuncionalConnection": "server=localhost;database=bancodigital;user=root;password=root"
-    }
+```json
+"ConnectionStrings": {
+  "BDFuncionalConnection": "server=localhost;database=bancodigital;user=root;password=root"
+}
+```
 
-3. Execute as migrações do Entity Framework
-- Para isso você deve abrir o console de gerenciador de pacotes, selecionar o projeto como padrão o MySql e rodar o seguinte comando: Update-Database
-![alt text](image.png)
+3. **Execute as migrações do Entity Framework**
 
+Abra o **Console do Gerenciador de Pacotes** no Visual Studio:
 
-4. Agora está pronta para rodar e testar!
-- Foi configurado inicialmente uma conta no banco que é criada automaticamente ao rodar o projeto e podemos realizar testes com ela. 
-![alt text](image-1.png)
+- Selecione como projeto padrão o **projeto de infraestrutura MySQL**
+- Rode o seguinte comando:
 
-Para Sacar:
+```powershell
+Update-Database
+```
 
-mutation{
-  sacar(numeroConta: "123", valor: 350){
+> Isso criará o schema inicial do banco de dados automaticamente.
+
+![Migração](image.png)
+
+---
+
+4. **Pronto para rodar e testar! 🎉**
+
+O sistema já vem com uma conta pré-configurada no banco, criada automaticamente na inicialização, para facilitar os testes.
+
+![Conta criada](image-1.png)
+
+---
+
+## 🧪 Exemplos de uso via GraphQL
+
+### ➖ Sacar
+
+```graphql
+mutation {
+  sacar(numeroConta: "123", valor: 350) {
     numeroConta
     saldo
   }
 }
+```
 
-![alt text](image-2.png)
+![Exemplo de saque](image-2.png)
 
-Para Depositar:
+---
 
-mutation{
-  depositar(numeroConta: "123", valor: 350){
+### ➕ Depositar
+
+```graphql
+mutation {
+  depositar(numeroConta: "123", valor: 350) {
     numeroConta
     saldo
   }
 }
+```
 
-![alt text](image-3.png)
+![Exemplo de depósito](image-3.png)
 
-Para Obter saldo:
+---
 
+### 💼 Obter saldo
+
+```graphql
 query {
   saldo(numeroConta: "123")
 }
+```
 
-![alt text](image-4.png)
+![Consulta de saldo](image-4.png)
 
+---
 
+## 🛠️ Tecnologias usadas
 
-🛠️ Tecnologias usadas
 - ASP.NET Core
 - GraphQL (HotChocolate)
 - Entity Framework Core
-- AutoFixture (para geração de dados aleatórios nos testes)
-- Fine Code Coverage (para cobertura de testes)
-
+- Moq & xUnit (para testes unitários)
+- AutoFixture (geração de dados para testes)
+- Fine Code Coverage (análise de cobertura de testes)

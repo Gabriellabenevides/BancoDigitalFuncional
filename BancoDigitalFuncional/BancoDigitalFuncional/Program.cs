@@ -26,7 +26,8 @@ builder.Services.AddGraphQLServer()
     .AddMutationType<Mutation>()
     .AddProjections()
     .AddFiltering()
-    .AddSorting();
+    .AddSorting()
+    .AddErrorFilter<CustomErrorFilter>();
 
 builder.Services.AddScoped<IContaRepository, ContaRepository>();
 builder.Services.AddScoped<IContaService, ContaService>();

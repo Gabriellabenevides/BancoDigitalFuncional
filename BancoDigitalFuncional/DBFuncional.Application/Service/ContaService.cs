@@ -8,7 +8,9 @@ public class ContaService(IContaRepository repository) : IContaService
 {
     public async Task<Conta> Depositar(string numeroConta, decimal valor)
     {
-        var conta = await ObterConta(numeroConta); 
+        ValidaDados(numeroConta, valor);
+        var conta = await ObterConta(numeroConta);
+
         conta.Saldo += valor;
         await repository.Atualizar(conta);
         return conta;
@@ -16,9 +18,11 @@ public class ContaService(IContaRepository repository) : IContaService
 
     public async Task<Conta> Sacar(string numeroConta, decimal valor)
     {
-        var conta = await ObterConta(numeroConta); 
+        ValidaDados(numeroConta, valor);
+        var conta = await ObterConta(numeroConta);
+
         if (conta.Saldo < valor)
-            throw new Exception(MessageException.SaldoInsuficiente);
+            throw new SaldoInsuficienteException();
         conta.Saldo -= valor;
         await repository.Atualizar(conta);
         return conta;
@@ -30,12 +34,23 @@ public class ContaService(IContaRepository repository) : IContaService
         return conta.Saldo;
     }
 
-
     private async Task<Conta> ObterConta(string numeroConta)
     {
         var conta = await repository.ObterPorNumero(numeroConta);
+
         if (conta == null)
-            throw new Exception("Conta não encontrada");
+            throw new ContaNaoEncontradaException();
         return conta;
+    }
+
+    private bool ValidaDados(string numeroConta, decimal valor)
+    {
+        if (string.IsNullOrEmpty(numeroConta))
+            throw new ArgumentoNull();
+
+        if (valor <= 0)
+            throw new ValorNegativo();
+
+        return true;
     }
 }

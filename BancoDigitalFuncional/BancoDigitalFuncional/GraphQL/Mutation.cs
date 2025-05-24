@@ -1,13 +1,13 @@
-﻿using DBFuncional.Application.Service;
+﻿using BDFuncional.Domain.Interface;
 using Domain.Entities;
 
 namespace BancoDigitalFuncional.GraphQL;
 
 public class Mutation
 {
-    private readonly ContaService _service;
+    private readonly IContaService _service;
 
-    public Mutation(ContaService service)
+    public Mutation(IContaService service)
     {
         _service = service;
     }

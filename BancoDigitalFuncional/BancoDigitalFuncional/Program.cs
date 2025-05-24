@@ -17,7 +17,9 @@ builder.Services.AddOpenApi();
 var connectionString = builder.Configuration.GetConnectionString("BDFuncionalConnection");
 
 builder.Services.AddDbContext<MySqlContext>(options =>
-    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)),
+    ServiceLifetime.Scoped 
+);
 
 builder.Services.AddGraphQLServer()
     .AddQueryType<BancoDigitalFuncional.GraphQL.Query>()
@@ -27,7 +29,7 @@ builder.Services.AddGraphQLServer()
     .AddSorting();
 
 builder.Services.AddScoped<IContaRepository, ContaRepository>();
-builder.Services.AddScoped<ContaService>();
+builder.Services.AddScoped<IContaService, ContaService>();
 
 var app = builder.Build();
 

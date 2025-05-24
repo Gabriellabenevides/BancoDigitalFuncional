@@ -1,18 +1,18 @@
-﻿using DBFuncional.Application.Service;
+﻿using BDFuncional.Domain.Interface;
 
 namespace BancoDigitalFuncional.GraphQL;
 
 public class Query
 {
-    private readonly ContaService _service;
+    private readonly IContaService _service;
 
-    public Query(ContaService service)
+    public Query(IContaService service)
     {
         _service = service;
     }
 
-    public decimal Saldo(string numeroConta)
+    public async Task<decimal> Saldo(string numeroConta)
     {
-        return _service.ObterSaldo(numeroConta);
+        return await _service.ObterSaldo(numeroConta);
     }
 }

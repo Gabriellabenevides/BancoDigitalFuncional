@@ -33,6 +33,22 @@ builder.Services.AddScoped<IContaService, ContaService>();
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<MySqlContext>();
+    db.Database.EnsureCreated(); 
+
+    if (!db.Contas.Any())
+    {
+        db.Contas.Add(new Domain.Entities.Conta
+        {
+            NumeroConta = "123",
+            Saldo = 1000m
+        });
+        db.SaveChanges();
+    }
+}
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

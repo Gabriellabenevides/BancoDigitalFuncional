@@ -12,7 +12,7 @@ Certifique-se de ter os seguintes itens instalados na sua máquina:
 
 - [.NET SDK 9.0](https://dotnet.microsoft.com/download)
 - [Visual Studio 2022+](https://visualstudio.microsoft.com/)
-- [MySQL Server](https://dev.mysql.com/downloads/)
+- [MySQL](https://dev.mysql.com/downloads/)
 
 ---
 
